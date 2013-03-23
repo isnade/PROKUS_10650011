@@ -1,0 +1,276 @@
+body {
+  margin: 0;
+	padding: 0;
+	line-height: 1.7em;
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 11px;
+	color: #707b84;
+	background: #ffffff;
+}
+		
+a:link, a:visited { color: #0066CC; text-decoration: none; font-weight: normal; } 
+a:active, a:hover { color: #008400; text-decoration: underline; }
+
+p { margin: 0px; padding: 0px; }
+
+img { margin: 0px; padding: 0px; border: none; }
+
+.float_l {
+	float: left;
+}
+
+.float_r {
+	float: right;
+}
+
+.cleaner { clear: both; width: 100%; height: 0px; font-size: 0px;  }
+
+h2 {
+	margin: 0 0 5px 0;
+	padding: 10px 0;
+	font:bold italic 20px/24px Georgia;
+	color: #106fb8;
+}
+
+h3 {
+	margin: 0	;
+	padding: 2px 0;
+	font-size: 13px;
+	font-weight: bold;
+	color: #3e464d;
+}
+
+table tbody tr.light{
+	color:#666666;
+	background-color:#F7F7F7;
+	}
+
+table tbody tr.dark{
+	color:#666666;
+	background-color:#E8E8E8;
+	}
+	
+#wrapper {
+	width: 980px;
+	margin: 0 auto;
+}
+
+#header_wrapper {
+	width: 100%;
+	background: #fff;
+}
+
+#header {
+	clear: both;
+	width: 960px;
+	height: 200px;
+	margin: 0 auto;
+	padding: 0 10px;
+	background: url(images/header.jpg) no-repeat;
+}
+
+#header p {
+	clear: both;
+	padding-left: 50px;
+	width: 600px;
+	font-size: 20px;
+	font-style: italic;
+	line-height: 26px;
+}
+
+#header #site_title {
+	float: left;
+	padding-top: 40px;
+	margin-left: 50px;
+	margin-bottom: 10px;	
+	width: 280px;
+	height: 100px;
+	text-align: center;	
+	overflow: hidden;	
+}
+
+#menu_wrapper {
+	width: 100%;
+	height: 90px;
+	margin: 0 auto;
+	background: url(images/menu.jpg) repeat-x;
+}
+
+#menu {
+	width: 920px;
+	height: 90px;
+	margin: 0 auto;
+	padding: 0 30px;
+	
+}
+
+#menu ul {
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+#menu ul li {
+	padding: 0px;
+	margin: 0px;
+	display: inline;
+}
+
+#menu ul li a {
+	position: relative;
+	float: left;
+	width: 152px;
+	display: block;
+	height: 40px;
+	padding: 50px 0 0 0;
+	text-align: center;
+	font-size: 14px;
+	text-decoration: none;
+	color: #333333;	
+	font-weight: bold;
+	outline: none;
+}
+
+#menu li a:hover, #menu li .current {
+	color: #008400;
+}
+
+#search{
+	display:block;
+	float:right;
+	width:242px;
+	height:36px;
+	margin:0;
+	padding:10px 0 0 17px;
+	color:#FFFFFF;
+	border-left:1px dotted #666666;
+	overflow:hidden;
+	}
+
+#content_wrapper {
+	width: 920px;
+	padding: 30px;
+	margin: 0 auto;
+}
+
+#sidebar {
+	float: left;
+	width: 280px;
+}
+
+.sidebar_box {
+	padding: 20px 30px;
+	background: #fff;
+}
+
+.sidebar_box_bottom {
+	width: 270px;
+	height: 6px;
+	margin-bottom: 30px;
+	background: #3e464d;
+}
+
+.sidebar_box label {
+	display: block;
+	margin-bottom: 10px;
+}
+
+.sidebar_box #input_field {
+	height: 20px;
+	width: 200px;
+	padding: 0 5px;
+	margin-bottom: 10px;
+	color: #000000;
+	font-size: 12px;
+	font-variant: normal;
+	line-height: normal;
+}
+
+.sidebar_box #submit_btn {
+	float: right;
+ 	height: 30px;
+	width: 80px;
+	margin: 0px;
+	padding: 3px 0 15px 0;
+	cursor: pointer;
+	font-size: 12px;
+	text-align: center;
+	vertical-align: bottom;
+	white-space: pre;
+	outline: none;
+}
+
+#content {
+	float:right;
+	width: 620px;
+}
+
+.content_box {
+	clear: both;
+	width: 530px;
+	padding: 20px 30px;
+	background: #fff;
+}
+
+.content_box_bottom {
+	width: 620px;
+	height: 7px;
+	margin-bottom: 20px;
+	background: #3e464d;
+}
+
+.content_box .image_fl {
+	float: left;
+	margin: 3px 15px 0 0;
+}
+
+.content_box .section_w250 {
+	width: 250px;
+}
+
+.list_01 {
+	margin: 0 0 0 20px;
+	padding: 0;
+	list-style: decimal-leading-zero;
+}
+
+.list_01 li {
+	color: #008400;
+	margin-bottom: 7px;
+}
+
+#footer_wrapper {
+	width: 100%;
+	margin: 0 auto;
+	background: #fff url(images/footer_top.jpg) top repeat-x;	
+}
+
+#footer {
+	width: 920px;
+	margin: 0 auto;
+	padding: 30px;
+	text-align: center;
+	color: #7c7471;
+}
+
+#footer a {
+	color: #333333;
+}
+
+#footer .footer_menu {
+	margin: 0 0 10px 0;
+	padding: 0px;
+	list-style: none;
+}
+
+.footer_menu li {
+	margin: 0px;
+	padding: 0 20px;
+	display: inline;
+	border-right: 1px solid #333333;
+}
+
+.footer_menu .last_menu {
+	border: none;
+}
