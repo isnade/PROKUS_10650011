@@ -3,7 +3,7 @@
 	include "configuration/koneksi.php";
 ?>
 <html>
-	<body id="top">
+	<body>
 		<?php include "includes/header.php";?>
 		<?php include "includes/menu.php";?>
 		<?php
