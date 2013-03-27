@@ -1,5 +1,9 @@
 <?php
+<<<<<<< HEAD
 	session_start();
+=======
+  session_start();
+>>>>>>> origin/master
 	include "configuration/koneksi.php";
 ?>
 <html>
