@@ -5,9 +5,7 @@
 <html>
 	<head>
 		<title>Page Not Found | SMP Negeri 10 Yogyakarta</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-		<meta http-equiv="imagetoolbar" content="no" />
-		<link rel="stylesheet" href="styles/style.css" type="text/css" />
+		<link rel="stylesheet" href="style.css" type="text/css" />
 	</head>
 	<body>
 		<?php include "includes/header.php";?>

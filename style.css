@@ -40,6 +40,10 @@ h3 {
 	color: #3e464d;
 }
 
+table tbody{
+	font-size: 12px;
+}
+
 table tbody tr.light{
 	color:#666666;
 	background-color:#F7F7F7;

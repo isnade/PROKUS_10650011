@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2013 at 07:45 AM
+-- Generation Time: Mar 25, 2013 at 11:19 AM
 -- Server version: 5.5.16
 -- PHP Version: 5.3.8
 
@@ -48,8 +48,8 @@ CREATE TABLE IF NOT EXISTS `absensi` (
 --
 
 CREATE TABLE IF NOT EXISTS `admin` (
-  `no` int(11) NOT NULL,
-  `id_admin` varchar(10) NOT NULL,
+  `id_admin` int(10) NOT NULL,
+  `nm_admin` varchar(20) NOT NULL,
   `password` varchar(40) NOT NULL,
   PRIMARY KEY (`id_admin`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -58,8 +58,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`no`, `id_admin`, `password`) VALUES
-(1, '10650011', '1adbcbeef010a1b3a2b06d99187435fa');
+INSERT INTO `admin` (`id_admin`, `nm_admin`, `password`) VALUES
+(10650011, 'isna', '1adbcbeef010a1b3a2b06d99187435fa');
 
 -- --------------------------------------------------------
 
@@ -192,7 +192,9 @@ CREATE TABLE IF NOT EXISTS `siswa` (
 --
 
 INSERT INTO `siswa` (`id_siswa`, `nm_siswa`, `password`, `angkatan`, `jk`, `agama`, `alamat`, `nm_ayah`, `nm_ibu`, `nm_wali`, `pekerjaan_ayah`, `pekerjaan_ibu`, `pekerjaan_wali`, `diterima_ditingkat`, `diterima_tanggal`, `no_sttb`, `tahun_sttb`, `anak_ke`) VALUES
+('075', 'aao', '207f466f93e1ea0d07fb2607ee058df7', '1998', 'L', 'islam', 'kdo', 'uirtth', 'kuhihg', 'kuyuieg', 'hief', 'ihiehgf', 'iifefi', 2, '1998-12-08', '697755-686.2', 1997, 3),
 ('102', 'a', 'ec8956637a99787bd197eacd77acce5e', '2010', 'p', 'islam', 'j', 'h', 'f', 'd', 's', 'h', 'fghthth', 2, '2013-03-05', '3', 2, 2),
+('1234', 'jsiutkf', '81dc9bdb52d04dc20036dbd8313ed055', '', 'P', 'islam', 'kkkfugug', 'uoug', 'thjjj', 'iuirg', 'hyjyjt', 'htrhrjx', 'fthtjy', 1, '0000-00-00', '5469-87995.58', 2009, 1),
 ('134', 'hfjj', '02522a2b2726fb0a03bb19f2d8d9524d', '', 'L', '', 'dwwetg', '', '', '', '', '', '', 0, '0000-00-00', '', 0, 0),
 ('1344', 'rttyuu', 'a50abba8132a77191791390c3eb19fe7', '', 'p', '', 'tjdtku', '', '', '', '', '', '', 0, '0000-00-00', '', 0, 0),
 ('234', 'ggsss', '289dff07669d7a23de0ef88d2f7129e7', '', 'P', '', 'jkfutercbkd', '', '', '', '', '', '', 0, '0000-00-00', '', 0, 0);
