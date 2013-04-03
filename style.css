@@ -67,10 +67,10 @@ table tbody tr.dark{
 #header {
 	clear: both;
 	width: 960px;
-	height: 200px;
+	height: 226px;
 	margin: 0 auto;
 	padding: 0 10px;
-	background: url(images/header.jpg) no-repeat;
+	background: url(images/bannersmp.jpg) no-repeat;
 }
 
 #header p {
@@ -84,11 +84,11 @@ table tbody tr.dark{
 
 #header #site_title {
 	float: left;
-	padding-top: 40px;
+	padding-top: 45px;
 	margin-left: 50px;
 	margin-bottom: 10px;	
 	width: 280px;
-	height: 100px;
+	height: 125px;
 	text-align: center;	
 	overflow: hidden;	
 }
@@ -101,7 +101,7 @@ table tbody tr.dark{
 }
 
 #menu {
-	width: 920px;
+	width: 900px;
 	height: 90px;
 	margin: 0 auto;
 	padding: 0 30px;
@@ -127,7 +127,7 @@ table tbody tr.dark{
 	width: 152px;
 	display: block;
 	height: 40px;
-	padding: 50px 0 0 0;
+	padding: 20px 0 0 0;
 	text-align: center;
 	font-size: 14px;
 	text-decoration: none;
@@ -207,13 +207,13 @@ table tbody tr.dark{
 
 #content {
 	float:right;
-	width: 620px;
+	width: 630px;
 }
 
 .content_box {
 	clear: both;
 	width: 530px;
-	padding: 20px 30px;
+	padding: 10px 30px;
 	background: #fff;
 }
 
