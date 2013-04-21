@@ -13,34 +13,9 @@
 						<th style=\"solid #000;\">Nama Siswa</th>
 						<th style=\"solid #000;\">Alamat</th>
 						<th style=\"solid #000;\">Jenis Kelamin</th>
-						<th style=\"solid #000;\">Tempat Lahir</th>
-						<th style=\"solid #000;\">Tanggal Lahir</th>
-						<th style=\"solid #000;\">Agama</th>
-						<th style=\"solid #000;\">Angkatan</th>
-						<th style=\"solid #000;\">Nama Ayah</th>
-						<th style=\"solid #000;\">Nama Ibu</th>
-						<th style=\"solid #000;\">Nama Wali</th>
-						<th style=\"solid #000;\">Pekerjaan Ayah</th>
-						<th style=\"solid #000;\">Pekerjaan Ibu</th>
-						<th style=\"solid #000;\">Pekerjaan Wali</th>
-						<th style=\"solid #000;\">Penghasilan Ayah</th>
-						<th style=\"solid #000;\">Penghasilan Ibu</th>
-						<th style=\"solid #000;\">Penghasilan Wali</th>
-						<th style=\"solid #000;\">Diterima di tingkat</th>
-						<th style=\"solid #000;\">Diterima Tanggal</th>
-						<th style=\"solid #000;\">No STTB</th>
-						<th style=\"solid #000;\">Tahun STTB</th>
-						<th style=\"solid #000;\">Anak ke</th>
-						<th style=\"solid #000;\">Foto</th>
-						<th style=\"solid #000;\">Proses</th>
+						<th style=\"solid #000;\" width=\"20%\">Proses</th>
 					</tr>";
-						if(!isset($_GET['order'])){
 							$siswa = mysql_query("SELECT * FROM siswa");
-						}else{
-							$order = addslashes($_GET['order']);
-							$sort = addslashes($_GET['sort']);
-							$siswa = mysql_query("SELECT * FROM siswa ORDER BY $order $sort");
-						}
 						$start=1;
 						while($a = mysql_fetch_array($siswa)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -49,27 +24,8 @@
 							<td style=\"text-align:center;solid #000;\">$a[nm_siswa]</td>
 							<td style=\"text-align:center;solid #000;\">$a[alamat]</td>
 							<td style=\"text-align:center;solid #000;\">$a[jk]</td>
-							<td style=\"text-align:center;solid #000;\">$a[tempat_lahir]</td>
-							<td style=\"text-align:center;solid #000;\">$a[tgl_lahir]</td>
-							<td style=\"text-align:center;solid #000;\">$a[agama]</td>
-							<td style=\"text-align:center;solid #000;\">$a[angkatan]</td>
-							<td style=\"text-align:center;solid #000;\">$a[nm_ayah]</td>
-							<td style=\"text-align:center;solid #000;\">$a[nm_ibu]</td>
-							<td style=\"text-align:center;solid #000;\">$a[nm_wali]</td>
-							<td style=\"text-align:center;solid #000;\">$a[pekerjaan_ayah]</td>
-							<td style=\"text-align:center;solid #000;\">$a[pekerjaan_ibu]</td>
-							<td style=\"text-align:center;solid #000;\">$a[pekerjaan_wali]</td>
-							<td style=\"text-align:center;solid #000;\">$a[penghasilan_ayah]</td>
-							<td style=\"text-align:center;solid #000;\">$a[penghasilan_ibu]</td>
-							<td style=\"text-align:center;solid #000;\">$a[penghasilan_wali]</td>
-							<td style=\"text-align:center;solid #000;\">$a[diterima_ditingkat]</td>
-							<td style=\"text-align:center;solid #000;\">$a[diterima_tanggal]</td>
-							<td style=\"text-align:center;solid #000;\">$a[no_sttb]</td>
-							<td style=\"text-align:center;solid #000;\">$a[tahun_sttb]</td>
-							<td style=\"text-align:center;solid #000;\">$a[anak_ke]</td>
-							<td style=\"text-align:center;solid #000;\">$a[foto]</td>
-							<td style=\"text-align:center;solid #000;\">
-							<a href=\"siswa-$a[id_siswa]-edit\"><img src=\"images/edit.png\"/></a>|<a href=\"siswa-$a[id_siswa]-hapus\"><img src=\"images/hapus.png\"/></a>|<a href=\"siswa-$a[id_siswa]-print\"><img src=\"images/print.png\"/></a>
+							<td style=\"text-align:center;solid #000;\"><a href=\"siswa-$a[id_siswa]-view\"><img src=\"images/view.png\"/></a>|
+							<a href=\"siswa-$a[id_siswa]-edit\"><img src=\"images/edit.png\"/></a>|<a href=\"siswa-$a[id_siswa]-hapus\"><img src=\"images/hapus.png\"/></a>
 							</td></tr>";
 							$start++;
 						}
@@ -131,29 +87,21 @@
 							</option></select>
 							</td></tr>
 							<tr class='dark'><td>Agama</td>
-								<td><input class="input" type="text" name="agama" /></td>
-							</tr>
+								<td><input class="input" type="text" name="agama" /></td></tr>
 							<tr class='light'><td>Angkatan</td>
-								<td><input class="input" type="text" name="angkatan"/></td>
-							</tr>
+								<td><input class="input" type="text" name="angkatan"/></td></tr>
 							<tr class='dark'><td>Nama Ayah</td>
-								<td><input class="input" type="text" name="nm_ayah" /></td>
-							</tr>
+								<td><input class="input" type="text" name="nm_ayah" /></td></tr>
 							<tr class='light'><td>Nama Ibu</td>
-								<td><input class="input" type="text" name="nm_ibu"/></td>
-							</tr>
+								<td><input class="input" type="text" name="nm_ibu"/></td></tr>
 							<tr class='dark'><td>Nama Wali</td>
-								<td><input class="input" type="text" name="nm_wali" /></td>
-							</tr>
+								<td><input class="input" type="text" name="nm_wali" /></td></tr>
 							<tr class='light'><td>Pekerjaan Ayah</td>
-								<td><input class="input" type="text" name="pekerjaan_ayah"/></td>
-							</tr>
+								<td><input class="input" type="text" name="pekerjaan_ayah"/></td></tr>
 							<tr class='dark'><td>Pekerjaan Ibu</td>
-								<td><input class="input" type="text" name="pekerjaan_ibu" /></td>
-							</tr>
+								<td><input class="input" type="text" name="pekerjaan_ibu" /></td></tr>
 							<tr class='light'><td>Pekerjaan Wali</td>
-								<td><input class="input" type="text" name="pekerjaan_wali"/></td>
-							</tr>
+								<td><input class="input" type="text" name="pekerjaan_wali"/></td></tr>
 							<tr class='dark'><td>Penghasilan Ayah</td>
 								<td><input class="input" type="text" name="penghasilan_ayah"/></td></tr>
 							<tr class='light'><td>Penghasilan Ibu</td>
@@ -171,7 +119,7 @@
 							<tr class='light'><td>Anak ke</td>
 								<td><input class="input" type="text" name="anak_ke" /></td><tr>
 							<tr class='dark'><td>Foto</td>
-								<td><input class="input" type="text" name="foto"/></td></tr>
+								<td><input class="input" name="foto"/></td></tr>
 								<td colspan="2" align="right">
 								<input type="submit" name="submit" value="Tambah" /></td></tr>
 						</table>
@@ -288,7 +236,7 @@
 							<td><input class="input" type="text" name="anak_ke" value="<?php echo $a['anak_ke']?>"/></td>
 							</tr>
 							<tr class='light'><td>Foto</td>
-							<td><input class="input" type="text" name="foto" value="<?php echo $a['foto']?>"/></td>
+							<td><input class="input" name="foto" value="<?php echo $a['foto']?>"/></td>
 							</tr>
 							<tr class='dark'><td><input type="submit" value="Edit" /></td></tr>
 							</table></form>
@@ -315,43 +263,62 @@
 							echo "<script>alert('Data tidak ditemukan');document.location='siswa';</script>";
 						}
 					}
+				}else if($_GET['proses']=='view'){
+					if(!isset($_GET['id_siswa'])){
+						echo "<script>document.location='siswa';</script>";
+					}else{
+					$id= addslashes($_GET['id_siswa']);
+					$siswa = mysql_query("SELECT * FROM siswa WHERE id_siswa='$id'");
+					$sis = mysql_num_rows($siswa);
+					if($sis == 1){
+					$a = mysql_fetch_array($siswa);
+					echo "<h3><center>Data Siswa</center></h3>";
+					echo "<table style=\"color:#000;\">
+					<tr><td>Foto</td><td>$a[foto]</td></tr>
+						<td>Id Siswa (NIS)</td><td>$a[id_siswa]</td></tr>
+						<tr><td>NISN</td><td>$a[nisn]</td></tr>
+						<td>Nama Siswa</td><td>$a[nm_siswa]</td></tr>
+						<td>Alamat</td><td>$a[alamat]</td></tr>
+						<td>Jenis Kelamin</td><td>$a[jk]</td></tr>
+						<td>Tempat Lahir</td><td>$a[tempat_lahir]</td></tr>
+						<td>Tanggal Lahir</td><td>$a[tgl_lahir]</td></tr>
+						<td>Agama</td><td>$a[agama]</td></tr>
+						<td>Angkatan</td><td>$a[angkatan]</td></tr>
+						<td>Nama Ayah</td><td>$a[nm_ayah]</td></tr>
+						<td>Nama Ibu</td><td>$a[nm_ibu]</td></tr>
+						<td>Nama Wali</td><td>$a[nm_wali]</td></tr>
+						<td>Pekerjaan Ayah</td><td>$a[pekerjaan_ayah]</td></tr>
+						<td>Pekerjaan Ibu</td><td>$a[pekerjaan_ibu]</td></tr>
+						<td>Pekerjaan Wali</td><td>$a[pekerjaan_wali]</td></tr>
+						<td>Penghasilan Ayah</td><td>$a[penghasilan_ayah]</td></tr>
+						<td>Penghasilan Ibu</td><td>$a[penghasilan_ibu]</td></tr>
+						<td>Penghasilan Wali</td><td>$a[penghasilan_wali]</td></tr>
+						<td>Diterima di tingkat</td><td>$a[diterima_ditingkat]</td></tr>
+						<td>Diterima Tanggal</td><td>$a[diterima_tanggal]</td></tr>
+						<td>No STTB</td><td>$a[no_sttb]</td></tr>
+						<td>Tahun STTB</td><td>$a[tahun_sttb]</td></tr>
+						<td>Anak ke</td><td>$a[anak_ke]</td></tr>
+						<td>Proses</td><td><a href=\"siswa-$a[id_siswa]-edit\"><img src=\"images/edit.png\"/></a>|<a href=\"siswa-$a[id_siswa]-hapus\"><img src=\"images/hapus.png\"/></a>|
+						<a href=\"javascript:window.print()\"><img src=\"images/print.png\"/></a></td>
+					</tr>";
+					}
+					echo "</table>";
 				}
+			}
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'guru')){
-				echo "
-					<table border=\"1\" style=\"color:#000;\">
+			if(!isset($_GET['proses'])){
+				echo "<table style=\"color:#000;\"><tr><td colspan=8 align=center><h3>Data Siswa</h3></td></tr>
 					<tr style=\"background:#ccc;\">
 						<th style=\"solid #000;\">Id Siswa (NIS)</th>
 						<th style=\"solid #000;\">NISN</th>
 						<th style=\"solid #000;\">Nama Siswa</th>
 						<th style=\"solid #000;\">Alamat</th>
 						<th style=\"solid #000;\">Jenis Kelamin</th>
-						<th style=\"solid #000;\">Tempat Lahir</th>
-						<th style=\"solid #000;\">Tanggal Lahir</th>
 						<th style=\"solid #000;\">Agama</th>
 						<th style=\"solid #000;\">Angkatan</th>
-						<th style=\"solid #000;\">Nama Ayah</th>
-						<th style=\"solid #000;\">Nama Ibu</th>
-						<th style=\"solid #000;\">Nama Wali</th>
-						<th style=\"solid #000;\">Pekerjaan Ayah</th>
-						<th style=\"solid #000;\">Pekerjaan Ibu</th>
-						<th style=\"solid #000;\">Pekerjaan Wali</th>
-						<th style=\"solid #000;\">Penghasilan Ayah</th>
-						<th style=\"solid #000;\">Penghasilan Ibu</th>
-						<th style=\"solid #000;\">Penghasilan Wali</th>
-						<th style=\"solid #000;\">Diterima di tingkat</th>
-						<th style=\"solid #000;\">Diterima Tanggal</th>
-						<th style=\"solid #000;\">No STTB</th>
-						<th style=\"solid #000;\">Tahun STTB</th>
-						<th style=\"solid #000;\">Anak ke</th>
-						<th style=\"solid #000;\">Foto</th>
+						<th style=\"solid #000;\"></th>
 					</tr>";
-						if(!isset($_GET['order'])){
-							$siswa = mysql_query("SELECT * FROM siswa ");
-						}else{
-							$order = addslashes($_GET['order']);
-							$sort = addslashes($_GET['sort']);
-							$siswa = mysql_query("SELECT * FROM siswa ORDER BY $order $sort");
-						}
+						$siswa = mysql_query("SELECT * FROM siswa ");
 						$start=1;
 						while($a = mysql_fetch_array($siswa)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -360,28 +327,54 @@
 							<td style=\"text-align:center;solid #000;\">$a[nm_siswa]</td>
 							<td style=\"text-align:center;solid #000;\">$a[alamat]</td>
 							<td style=\"text-align:center;solid #000;\">$a[jk]</td>
-							<td style=\"text-align:center;solid #000;\">$a[tempat_lahir]</td>
-							<td style=\"text-align:center;solid #000;\">$a[tgl_lahir]</td>
 							<td style=\"text-align:center;solid #000;\">$a[agama]</td>
 							<td style=\"text-align:center;solid #000;\">$a[angkatan]</td>
-							<td style=\"text-align:center;solid #000;\">$a[nm_ayah]</td>
-							<td style=\"text-align:center;solid #000;\">$a[nm_ibu]</td>
-							<td style=\"text-align:center;solid #000;\">$a[nm_wali]</td>
-							<td style=\"text-align:center;solid #000;\">$a[pekerjaan_ayah]</td>
-							<td style=\"text-align:center;solid #000;\">$a[pekerjaan_ibu]</td>
-							<td style=\"text-align:center;solid #000;\">$a[pekerjaan_wali]</td>
-							<td style=\"text-align:center;solid #000;\">$a[penghasilan_ayah]</td>
-							<td style=\"text-align:center;solid #000;\">$a[penghasilan_ibu]</td>
-							<td style=\"text-align:center;solid #000;\">$a[penghasilan_wali]</td>
-							<td style=\"text-align:center;solid #000;\">$a[diterima_ditingkat]</td>
-							<td style=\"text-align:center;solid #000;\">$a[diterima_tanggal]</td>
-							<td style=\"text-align:center;solid #000;\">$a[no_sttb]</td>
-							<td style=\"text-align:center;solid #000;\">$a[tahun_sttb]</td>
-							<td style=\"text-align:center;solid #000;\">$a[anak_ke]</td>
-							<td style=\"text-align:center;solid #000;\">$a[foto]</td></tr>";
+							<td><a href=\"siswa-$a[id_siswa]-view\">Lihat Selengkapnya</a></td>
+							</tr>";
 							$start++;
 						}
 					echo "</table>";
+			}else if($_GET['proses']=='view'){
+					if(!isset($_GET['id_siswa'])){
+						echo "<script>document.location='siswa';</script>";
+					}else{
+					$id= addslashes($_GET['id_siswa']);
+					$siswa = mysql_query("SELECT * FROM siswa WHERE id_siswa='$id'");
+					$sis = mysql_num_rows($siswa);
+					if($sis == 1){
+					$a = mysql_fetch_array($siswa);
+					echo "<h3><center>Data Siswa</center></h3>";
+					echo "<table style=\"color:#000;\">
+					<tr><td>Foto</td><td>$a[foto]</td></tr>
+						<td>Id Siswa (NIS)</td><td>$a[id_siswa]</td></tr>
+						<tr><td>NISN</td><td>$a[nisn]</td></tr>
+						<td>Nama Siswa</td><td>$a[nm_siswa]</td></tr>
+						<td>Alamat</td><td>$a[alamat]</td></tr>
+						<td>Jenis Kelamin</td><td>$a[jk]</td></tr>
+						<td>Tempat Lahir</td><td>$a[tempat_lahir]</td></tr>
+						<td>Tanggal Lahir</td><td>$a[tgl_lahir]</td></tr>
+						<td>Agama</td><td>$a[agama]</td></tr>
+						<td>Angkatan</td><td>$a[angkatan]</td></tr>
+						<td>Nama Ayah</td><td>$a[nm_ayah]</td></tr>
+						<td>Nama Ibu</td><td>$a[nm_ibu]</td></tr>
+						<td>Nama Wali</td><td>$a[nm_wali]</td></tr>
+						<td>Pekerjaan Ayah</td><td>$a[pekerjaan_ayah]</td></tr>
+						<td>Pekerjaan Ibu</td><td>$a[pekerjaan_ibu]</td></tr>
+						<td>Pekerjaan Wali</td><td>$a[pekerjaan_wali]</td></tr>
+						<td>Penghasilan Ayah</td><td>$a[penghasilan_ayah]</td></tr>
+						<td>Penghasilan Ibu</td><td>$a[penghasilan_ibu]</td></tr>
+						<td>Penghasilan Wali</td><td>$a[penghasilan_wali]</td></tr>
+						<td>Diterima di tingkat</td><td>$a[diterima_ditingkat]</td></tr>
+						<td>Diterima Tanggal</td><td>$a[diterima_tanggal]</td></tr>
+						<td>No STTB</td><td>$a[no_sttb]</td></tr>
+						<td>Tahun STTB</td><td>$a[tahun_sttb]</td></tr>
+						<td>Anak ke</td><td>$a[anak_ke]</td></tr>
+						<td>Proses</td><td><a href=\"javascript:window.print()\"><img src=\"images/print.png\"/></a></td>
+					</tr>";
+					}
+					echo "</table>";
+				}
+			}
 			}?>
       <div class="cleaner"></div>
     </div>

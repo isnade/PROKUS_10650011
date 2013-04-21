@@ -3,7 +3,7 @@
 	<?php
 			if(!isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])){
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
-			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'admin')){
+			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND !($_SESSION['sebagai'] == 'siswa')){
 				if(!isset($_GET['proses'])){
 					echo "
 					<table border=\"1\" style=\"color:#000;\">
@@ -12,6 +12,7 @@
 					<th style=\"border:1px solid #000;\">Tahun ajaran</th>
 					<th style=\"border:1px solid #000;\">Semester</th>
 					<th style=\"border:1px solid #000;\">Kode Mapel</th>
+					<th style=\"border:1px solid #000;\">Kode Kelas</th>
 					<th style=\"border:1px solid #000;\">KKM</th>
 					<th style=\"border:1px solid #000;\">Ulangan 1</th>
 					<th style=\"border:1px solid #000;\">Ulangan 2</th>
@@ -21,13 +22,7 @@
 					<th style=\"border:1px solid #000;\">Nilai Rapor</th>
 					<th tyle=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-						if(!isset($_GET['order'])){
-							$nilai = mysql_query("SELECT * FROM nilai ");
-						}else{
-							$order = addslashes($_GET['order']);
-							$sort = addslashes($_GET['sort']);
-							$nilai = mysql_query("SELECT * FROM nilai ORDER BY $order $sort");
-						}
+						$nilai = mysql_query("SELECT * FROM nilai ");
 						$start=1;
 						while($a = mysql_fetch_array($nilai)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -35,6 +30,7 @@
 							<td style=\"text-align:center;border:1px solid #000;\">$a[thn_ajaran]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[semester]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[kd_mapel]</td>
+							<td style=\"text-align:center;border:1px solid #000;\">$a[kd_kelas]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[kkm]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[ulangan_1]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[ulangan_2]</td>
@@ -49,11 +45,12 @@
 						}
 					echo "</table>";
 					?>
+					<br>
 					<form action="users/admin/proses/tambah.nilai.php" method="post">
 					<style>.input{padding:4px;width:100%;}</style>
 						<table border="1" style="color:#000;">
 							<tr class='light'>
-								<th colspan='2'><center><h1>Masukan Data nilai baru</h1></center></th>
+								<th colspan='2'><center><h3>Masukan Data nilai baru</h3></center></th>
 							</tr>
 							<tr class='dark'>
 								<td>Id Siswa(NIS)</td>
@@ -72,34 +69,38 @@
 								<td><input class="input" type="text" name="kd_mapel"/></td>
 							</tr>
 							<tr class='dark'>
+								<td>Kode Kelas</td>
+								<td><input class="input" type="text" name="kd_kelas"/></td>
+							</tr>
+							<tr class='light'>
 								<td>KKM</td>
 								<td><input class="input" type="text" name="kkm"/></td>
 							</tr>
-							<tr class='light'>
+							<tr class='dark'>
 								<td>Ulangan 1</td>
 								<td><input class="input" type="text" name="ulangan_1"/></td>
 							</tr>
-							<tr class='dark'>
+							<tr class='light'>
 								<td>Ulangan 2</td>
 								<td><input class="input" type="text" name="ulangan_2"/></td>
 							</tr>
-							<tr class='light'>
+							<tr class='dark'>
 								<td>Ulangan 3</td>
 								<td><input class="input" type="text" name="ulangan_3"/></td>
 							</tr>
-							<tr class='dark'>
+							<tr class='light'>
 								<td>Mid Semester</td>
 								<td><input class="input" type="text" name="mid_sem"/></td>
 							</tr>
-							<tr class='light'>
+							<tr class='dark'>
 								<td>Ujian Akhir Semester</td>
 								<td><input class="input" type="text" name="uas"/></td>
 							</tr>
-							<tr class='dark'>
+							<tr class='light'>
 								<td>Nilai Rapor</td>
 								<td><input class="input" type="text" name="nilai_rapor"/></td>
 							</tr>
-							<tr class='light'>
+							<tr class='dark'>
 								<td colspan="2"><input type="submit" name="submit" align="center" value="Tambah"/></td>
 							</tr>
 						</table>
@@ -182,14 +183,11 @@
 					}
 				}
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'siswa')){
-			$id=$_SESSION['nama'];
-			$nilai = mysql_query("SELECT s.nm_siswa,s.id_siswa,k.kelas,n.thn_ajaran,n.semester FROM siswa s,kelas k,nilai n WHERE s.id_siswa=$id");
+			$nilai = mysql_query("SELECT s.nm_siswa,s.id_siswa,k.kelas,n.thn_ajaran,n.semester FROM siswa s,kelas k,nilai n WHERE k.id_siswa='$_SESSION[nama]' and password='$_SESSION[pass]'");
 			$n = mysql_fetch_array($nilai);
 			echo "<table><tr><td>Nama :</td><td >$n[nm_siswa]</td></tr>
 			<tr><td>NIS :</td><td>$n[id_siswa]</td></tr>
 			<tr><td>Kelas :</td><td>$n[kelas]</td></tr>
-			<tr><td>Tahun Ajaran :</td><td>$n[thn_ajaran]</td></tr>
-			<tr><td>Semester :</td><td>$n[semester]</td>
 			</tr></table>";
 					echo "<table border=\"1\" style=\"color:#000;\">
 					<tr style=\"background:#ccc;\">
@@ -201,8 +199,10 @@
 						<th style=\"border:1px solid #000;\">Mid Semester</th>
 						<th style=\"border:1px solid #000;\">Ujian Akhir Semester</th>
 						<th style=\"border:1px solid #000;\">Nilai Rapor</th>
+						<th style=\"border:1px solid #000;\">Semester</th>
+						<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
 					</tr>";
-						$nilai = mysql_query("SELECT n.*,m.nm_mapel FROM nilai n,mapel m WHERE id_siswa=$id and n.kd_mapel=m.kd_mapel ");
+						$nilai = mysql_query("SELECT n.*,m.nm_mapel FROM nilai n,mapel m WHERE id_siswa='$_SESSION[nama]' and n.kd_mapel=m.kd_mapel ");
 						$start=1;
 						while($a = mysql_fetch_array($nilai)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -213,7 +213,9 @@
 							<td style=\"text-align:center;border:1px solid #000;\">$a[ulangan_3]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[mid_sem]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[uas]</td>
-							<td style=\"text-align:center;border:1px solid #000;\">$a[nilai_rapor]</td></tr>";
+							<td style=\"text-align:center;border:1px solid #000;\">$a[nilai_rapor]</td>
+							<td style=\"text-align:center;border:1px solid #000;\">$a[semester]</td>
+							<td style=\"text-align:center;border:1px solid #000;\">$a[thn_ajaran]</td></tr>";
 							$start++;
 						}
 					echo "</table>";

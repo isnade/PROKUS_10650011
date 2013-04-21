@@ -17,15 +17,8 @@
 						<th style=\"solid #000;\">Tanggal Lahir</th>
 						<th style=\"solid #000;\">Status</th>
 						<th style=\"solid #000;\">Keterangan</th>
-						<th style=\"solid #000;\">Proses</th>
-					</tr>";
-						if(!isset($_GET['order'])){
-							$guru = mysql_query("SELECT * FROM guru ");
-						}else{
-							$order = addslashes($_GET['order']);
-							$sort = addslashes($_GET['sort']);
-							$guru = mysql_query("SELECT * FROM guru ORDER BY $order $sort");
-						}
+						<th style=\"solid #000;\">Proses</th></tr>";
+						$guru = mysql_query("SELECT * FROM guru ");
 						$start=1;
 						while($a = mysql_fetch_array($guru)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -209,15 +202,8 @@
 						<th style=\"solid #000;\">Tempat Lahir</th>
 						<th style=\"solid #000;\">Tanggal Lahir</th>
 						<th style=\"solid #000;\">Status</th>
-						<th style=\"solid #000;\">Keterangan</th>
-					</tr>";
-						if(!isset($_GET['order'])){
-							$guru = mysql_query("SELECT * FROM guru ");
-						}else{
-							$order = addslashes($_GET['order']);
-							$sort = addslashes($_GET['sort']);
-							$guru = mysql_query("SELECT * FROM guru ORDER BY $order $sort");
-						}
+						<th style=\"solid #000;\">Keterangan</th></tr>";
+						$guru = mysql_query("SELECT * FROM guru ");
 						$start=1;
 						while($a = mysql_fetch_array($guru)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -229,8 +215,7 @@
 							<td style=\"text-align:center;solid #000;\">$a[tempat_lahir]</td>
 							<td style=\"text-align:center;solid #000;\">$a[tgl_lahir]</td>
 							<td style=\"text-align:center;solid #000;\">$a[status]</td>
-							<td style=\"text-align:center;solid #000;\">$a[keterangan]</td>
-							</tr>";
+							<td style=\"text-align:center;solid #000;\">$a[keterangan]</td></tr>";
 							$start++;
 						}
 					echo "</table>";
