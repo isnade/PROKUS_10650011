@@ -8,7 +8,7 @@
 					echo "
 					<table border=\"1\" style=\"color:#000;\">
 					<tr>
-						<th colspan=\"100%\"><center><h2>Mapel</h2></center></th>
+						<th colspan=\"100%\"><center><h3>Mapel</h3></center></th>
 					</tr>
 					<tr style=\"background:#ccc;\">
 						<th style=\"border:1px solid #000;\">Kode Mapel</th>
@@ -31,8 +31,8 @@
 								$mulai++;
 							}
 					echo "</table>";
-				
 			?>
+			<br>
 			<form action="users/admin/proses/tambah.mapel.php" method="post">
 					<style>.input{padding:4px;width:100%;}</style>
 						<table border="1" style="color:#000;">
