@@ -1,0 +1,33 @@
+RewriteEngine On
+RewriteBase /sia/
+RewriteRule ^home$ ?act=home
+RewriteRule ^siswa$ ?act=siswa
+RewriteRule ^siswa-([0-9]+)-edit$ ?act=siswa&proses=edit&id_siswa=$1
+RewriteRule ^siswa-([0-9]+)-hapus$ ?act=siswa&proses=hapus&id_siswa=$1
+RewriteRule ^siswa-([0-9]+)-view$ ?act=siswa&proses=view&id_siswa=$1
+RewriteRule ^guru$ ?act=guru
+RewriteRule ^guru-([0-9]+)-edit$ ?act=guru&proses=edit&id_guru=$1
+RewriteRule ^guru-([0-9]+)-hapus$ ?act=guru&proses=hapus&id_guru=$1
+RewriteRule ^admin$ ?act=admin
+RewriteRule ^admin-([0-9]+)-edit$ ?act=admin&proses=edit&id_admin=$1
+RewriteRule ^admin-([0-9]+)-hapus$ ?act=admin&proses=hapus&id_admin=$1
+RewriteRule ^jadwal$ ?act=jadwal
+RewriteRule ^jadwal-([0-9]+)-edit$ ?act=jadwal&proses=edit&kd_kelas=$1
+RewriteRule ^jadwal-([0-9]+)-hapus$ ?act=jadwal&proses=hapus&kd_kelas=$1
+RewriteRule ^nilai$ ?act=nilai
+RewriteRule ^nilai-([0-9]+)-edit$ ?act=nilai&proses=edit&id_siswa=$1
+RewriteRule ^nilai-([0-9]+)-hapus$ ?act=nilai&proses=hapus&id_siswa=$1
+RewriteRule ^mapel$ ?act=mapel
+RewriteRule ^mapel-([0-9]+)-edit$ ?act=mapel&proses=edit&kd_mapel=$1
+RewriteRule ^mapel-([0-9]+)-hapus$ ?act=mapel&proses=hapus&kd_mapel=$1
+RewriteRule ^kelas$ ?act=kelas
+RewriteRule ^kelas-([0-9]+)-edit$ ?act=kelas&proses=edit&kd_kelas=$1
+RewriteRule ^kelas-([0-9]+)-hapus$ ?act=kelas&proses=hapus&kd_kelas=$1
+RewriteRule ^materi$ ?act=materi
+RewriteRule ^presensi$ ?act=presensi
+RewriteRule ^presensi-([0-9]+)-edit$ ?act=presensi&proses=edit&id_siswa=$1
+RewriteRule ^presensi-([0-9]+)-hapus$ ?act=presensi&proses=hapus&id_siswa=$1
+RewriteRule ^upload$ ?act=upload
+RewriteRule ^logout$ ?act=logout
+
+ErrorDocument 404 /sia/pagenotfound.php
