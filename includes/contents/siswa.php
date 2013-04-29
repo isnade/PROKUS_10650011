@@ -32,7 +32,7 @@
 					echo "</table>";
 					?>
 					<br>
-					<form action="users/admin/proses/tambah.siswa.php" method="post">
+					<form enctype="multipart/form-data" action="users/admin/proses/tambah.siswa.php" method="post">
 					<style>.input{padding:4px;width:100%;}</style>
 						<table style="color:#000;">
 							<tr><th colspan='2'><center><h3>Masukan Data Siswa Baru</h3></center></th>
@@ -57,7 +57,7 @@
 								</select></td>
 							</tr>
 							<tr class='dark'><td>Tempat Lahir</b></td>
-							<td><input type="text" name="tempat"></td>
+							<td><input class="input" type="text" name="tempat"></td>
 							</tr>
 							<tr class='light'><td>Tanggal</td>
 							<td><select name="tanggal">
@@ -119,7 +119,7 @@
 							<tr class='light'><td>Anak ke</td>
 								<td><input class="input" type="text" name="anak_ke" /></td><tr>
 							<tr class='dark'><td>Foto</td>
-								<td><input class="input" name="foto"/></td></tr>
+								<td><input type="file" name="foto" id="foto"/></td></tr>
 								<td colspan="2" align="right">
 								<input type="submit" name="submit" value="Tambah" /></td></tr>
 						</table>
@@ -134,7 +134,7 @@
 						$jsiswa = mysql_num_rows($siswa);
 						if($jsiswa == 1){
 							$a = mysql_fetch_array($siswa);?>
-							<form action="users/admin/proses/edit.siswa.php" method="post">
+							<form enctype="multipart/form-data" action="users/admin/proses/edit.siswa.php" method="post">
 							<style>.input{padding:4px;width:100%;}</style>
 							<table style="color:#000;">
 							<tr class='dark'><th colspan='2'><center><h3>Data siswa</h3></center></th></tr>
@@ -236,7 +236,7 @@
 							<td><input class="input" type="text" name="anak_ke" value="<?php echo $a['anak_ke']?>"/></td>
 							</tr>
 							<tr class='light'><td>Foto</td>
-							<td><input class="input" name="foto" value="<?php echo $a['foto']?>"/></td>
+							<td><input type="file" name="foto" id="foto"/></td>
 							</tr>
 							<tr class='dark'><td><input type="submit" value="Edit" /></td></tr>
 							</table></form>
@@ -274,7 +274,7 @@
 					$a = mysql_fetch_array($siswa);
 					echo "<h3><center>Data Siswa</center></h3>";
 					echo "<table style=\"color:#000;\">
-					<tr><td>Foto</td><td>$a[foto]</td></tr>
+					<tr><td><img src=\"./$a[foto]\"/></td></tr>
 						<td>Id Siswa (NIS)</td><td>$a[id_siswa]</td></tr>
 						<tr><td>NISN</td><td>$a[nisn]</td></tr>
 						<td>Nama Siswa</td><td>$a[nm_siswa]</td></tr>
@@ -345,7 +345,7 @@
 					$a = mysql_fetch_array($siswa);
 					echo "<h3><center>Data Siswa</center></h3>";
 					echo "<table style=\"color:#000;\">
-					<tr><td>Foto</td><td>$a[foto]</td></tr>
+					<tr><td><img src=\"./$a[foto]\"/></td></tr>
 						<td>Id Siswa (NIS)</td><td>$a[id_siswa]</td></tr>
 						<tr><td>NISN</td><td>$a[nisn]</td></tr>
 						<td>Nama Siswa</td><td>$a[nm_siswa]</td></tr>
