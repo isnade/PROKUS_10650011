@@ -8,10 +8,10 @@
 		$kd_mapel = $_POST['kd_mapel'];
 		$hari = $_POST['hari'];
 		$jam = $_POST['jam'];
-		$id_guru = $_POST['id_guru'];
+		$kd = $_POST['kd_guru'];
 		$ruang = $_POST['ruang'];
 		$thn_ajaran = $_POST['thn_ajaran'];
-		$edit = mysql_query("UPDATE jadwal SET kd_kelas='$kd_kelas',kd_mapel='$kd_mapel',hari='$hari',jam='$jam',id_guru='$id_guru',ruang='$ruang',thn_ajaran='$thn_ajaran' WHERE kd_kelas='$kd_kelas'");
+		$edit = mysql_query("UPDATE jadwal SET kd_kelas='$kd_kelas',kd_mapel='$kd_mapel',hari='$hari',jam='$jam',kd_guru='$kd',ruang='$ruang',thn_ajaran='$thn_ajaran' WHERE kd_kelas='$kd_kelas'");
 		if($edit){
 			echo "<script>alert('Data berhasil diubah');document.location='../../../jadwal';</script>";
 		}else{

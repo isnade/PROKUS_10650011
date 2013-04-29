@@ -30,10 +30,15 @@
 		$nosttb = $_POST['no_sttb'];
 		$thnsttb = $_POST['tahun_sttb'];
 		$anakke = $_POST['anak_ke'];
-		$foto = $_POST['foto'];
-		$edit = mysql_query("UPDATE siswa SET nm_siswa='$nama',nisn='$nisn',password='$pass',alamat='$alamat',jk='$jk',tempat_lahir='$tempat_lahir',tgl_lahir='$thn''$bln''$tgl',angkatan='$angk',agama='$agama',nm_ayah='$nma',nm_ibu='$nmi',nm_wali='$nmw',pekerjaan_ayah='$pka',pekerjaan_ibu='$pki',pekerjaan_wali='$pkw',penghasilan_ayah='$pha',penghasilan_ibu='$phi',penghasilan_wali='$phw',diterima_ditingkat='$tingkat',diterima_tanggal='$ditertgl',no_sttb='$nosttb',tahun_sttb='$thnsttb',anak_ke='$anakke',foto='$foto' WHERE id_siswa='$id'");
-		if($edit){
-			echo "<script>alert('Data berhasil diubah');document.location='../../../siswa';</script>";
+		$nama_file=$_FILES['foto']['name'];
+		$uploaddir='./foto_/';
+		$alamatfile=$uploaddir.$nama_file;
+		$updir='./users/admin/proses/foto_/';
+		$url=$updir.$nama_file;
+		if (move_uploaded_file($_FILES['foto']['tmp_name'],$alamatfile))
+		{
+		$edit = mysql_query("UPDATE siswa SET nm_siswa='$nama',nisn='$nisn',password='$pass',alamat='$alamat',jk='$jk',tempat_lahir='$tempat_lahir',tgl_lahir='$thn''$bln''$tgl',angkatan='$angk',agama='$agama',nm_ayah='$nma',nm_ibu='$nmi',nm_wali='$nmw',pekerjaan_ayah='$pka',pekerjaan_ibu='$pki',pekerjaan_wali='$pkw',penghasilan_ayah='$pha',penghasilan_ibu='$phi',penghasilan_wali='$phw',diterima_ditingkat='$tingkat',diterima_tanggal='$ditertgl',no_sttb='$nosttb',tahun_sttb='$thnsttb',anak_ke='$anakke',foto='$url' WHERE id_siswa='$id'");
+		echo "<script>alert('Data berhasil diubah');document.location='../../../siswa';</script>";
 		}else{
 			echo "<script>alert('Data gagal diubah');document.location='../../../siswa-$id-edit';</script>";
 		}

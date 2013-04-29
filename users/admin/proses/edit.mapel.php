@@ -7,8 +7,8 @@
 		$kd_mapel = $_POST['kd_mapel'];
 		$nm_mapel = $_POST['nm_mapel'];
 		$kd_kelas = $_POST['kd_kelas'];
-		$id_guru = $_POST['id_guru'];
-		$edit = mysql_query("UPDATE mapel SET kd_mapel='$kd_mapel',nm_mapel='$nm_mapel',kd_kelas='$kd_kelas',id_guru='$id_guru' WHERE kd_mapel='$kd_mapel'");
+		$kd = $_POST['kd_guru'];
+		$edit = mysql_query("UPDATE mapel SET kd_mapel='$kd_mapel',nm_mapel='$nm_mapel',kd_kelas='$kd_kelas',kd_guru='$kd' WHERE kd_mapel='$kd_mapel'");
 		if($edit){
 			echo "<script>alert('Data berhasil diubah');document.location='../../../mapel';</script>";
 		}else{

@@ -8,10 +8,10 @@
 		$kd_mapel = $_POST['kd_mapel'];
 		$hari = $_POST['hari'];
 		$jam = $_POST['jam'];
-		$id_guru = $_POST['id_guru'];
+		$kd = $_POST['kd_guru'];
 		$ruang = $_POST['ruang'];
 		$thn_ajaran = $_POST['thn_ajaran'];
-		$insert = mysql_query("INSERT INTO jadwal(kd_kelas,kd_mapel,hari,jam,id_guru,ruang,thn_ajaran) values('$kd_kelas','$kd_mapel','$hari','$jam','$id_guru','$ruang','$thn_ajaran')");
+		$insert = mysql_query("INSERT INTO jadwal(kd_kelas,kd_mapel,hari,jam,kd_guru,ruang,thn_ajaran) values('$kd_kelas','$kd_mapel','$hari','$jam','$kd','$ruang','$thn_ajaran')");
 		if($insert){
 			echo "<script>alert('Data jadwal berhasil ditambah');document.location='../../../jadwal';</script>";
 		}else{

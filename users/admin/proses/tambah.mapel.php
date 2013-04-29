@@ -7,8 +7,8 @@
 		$kd_mapel = $_POST['kd_mapel'];
 		$nm_mapel = $_POST['nm_mapel'];
 		$kd_kelas = $_POST['kd_kelas'];
-		$id_guru = $_POST['id_guru'];
-		$insert = mysql_query("INSERT INTO mapel(kd_mapel,nm_mapel,kd_kelas,id_guru) values('$kd_mapel','$nm_mapel','$kd_kelas','$id_guru')");
+		$kd = $_POST['kd_guru'];
+		$insert = mysql_query("INSERT INTO mapel(kd_mapel,nm_mapel,kd_kelas,kd_guru) values('$kd_mapel','$nm_mapel','$kd_kelas','$kd')");
 		if($insert){
 			echo "<script>alert('Data mapel berhasil ditambah');document.location='../../../mapel';</script>";
 		}else{

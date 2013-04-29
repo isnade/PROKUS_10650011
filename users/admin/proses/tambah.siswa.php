@@ -30,11 +30,15 @@
 		$nosttb = $_POST['no_sttb'];
 		$thnsttb = $_POST['tahun_sttb'];
 		$anakke = $_POST['anak_ke'];
-		$foto = $_POST['foto'];
+		$nama_file=$_FILES['foto']['name'];
+		$uploaddir='./foto_/';
+		$alamatfile=$uploaddir.$nama_file;
+		$updir='./users/admin/proses/foto_/';
+		$url=$updir.$nama_file;
+		if (move_uploaded_file($_FILES['foto']['tmp_name'],$alamatfile)){
 		$insert = mysql_query("insert into siswa(id_siswa,nm_siswa,nisn,password,angkatan,alamat,jk,tempat_lahir,tgl_lahir,agama,nm_ayah,nm_ibu,nm_wali,pekerjaan_ayah,pekerjaan_ibu,pekerjaan_wali,penghasilan_ayah,penghasilan_ibu,penghasilan_wali,diterima_ditingkat,diterima_tanggal,no_sttb,tahun_sttb,anak_ke,foto)
-		values('$id','$nama','$nisn','$pass','$angk','$alamat','$jk','$tempat_lahir','$thn''$bln''$tgl','$agama','$nma','$nmi','$nmw','$pka','$pki','$pkw','$pha','$phi','$phw','$tingkat','$ditertgl','$nosttb','$thnsttb','$anakke','$foto')");
-		if($insert){
-			echo "<script>alert('Data siswa berhasil ditambah');document.location='../../../siswa';</script>";
+		values('$id','$nama','$nisn','$pass','$angk','$alamat','$jk','$tempat_lahir','$thn''$bln''$tgl','$agama','$nma','$nmi','$nmw','$pka','$pki','$pkw','$pha','$phi','$phw','$tingkat','$ditertgl','$nosttb','$thnsttb','$anakke','$url')");
+		echo "<script>alert('Data siswa berhasil ditambah');document.location='../../../siswa';</script>";
 		}else{
 			echo "<script>alert('Data siswa gagal ditambah');document.location='../../../siswa';</script>";
 		}
