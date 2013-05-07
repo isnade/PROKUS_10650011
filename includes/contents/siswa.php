@@ -33,7 +33,6 @@
 					?>
 					<br>
 					<form enctype="multipart/form-data" action="users/admin/proses/tambah.siswa.php" method="post">
-					<style>.input{padding:4px;width:100%;}</style>
 						<table style="color:#000;">
 							<tr><th colspan='2'><center><h3>Masukan Data Siswa Baru</h3></center></th>
 							</tr>
@@ -135,7 +134,6 @@
 						if($jsiswa == 1){
 							$a = mysql_fetch_array($siswa);?>
 							<form enctype="multipart/form-data" action="users/admin/proses/edit.siswa.php" method="post">
-							<style>.input{padding:4px;width:100%;}</style>
 							<table style="color:#000;">
 							<tr class='dark'><th colspan='2'><center><h3>Data siswa</h3></center></th></tr>
 							<tr class='light'><td>Id siswa</td>
@@ -236,7 +234,7 @@
 							<td><input class="input" type="text" name="anak_ke" value="<?php echo $a['anak_ke']?>"/></td>
 							</tr>
 							<tr class='light'><td>Foto</td>
-							<td><input type="file" name="foto" id="foto"/></td>
+							<td><input type="file" name="foto" id="foto" value="<?php echo $a['foto']?>"/></td>
 							</tr>
 							<tr class='dark'><td><input type="submit" value="Edit" /></td></tr>
 							</table></form>

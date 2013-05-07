@@ -5,8 +5,17 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND !($_SESSION['sebagai'] == 'siswa')){
 				if(!isset($_GET['proses'])){
-					echo "
+				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
+				$i=1;
+					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
+					<tr><td>Kelas</td><td><select name='x'>
+						<option value=1 selected>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$i++;
+							$kode = $_POST['x'];}
+							echo"</option></select></td><td><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
 					<tr style=\"background:#ccc;\">
 					<th style=\"border:1px solid #000;\">Id Siswa (NIS)</th>
 					<th style=\"border:1px solid #000;\">Kode Kelas</th>
@@ -18,7 +27,9 @@
 					<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
 					<th tyle=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-						$absensi = mysql_query("SELECT * FROM absensi ");
+					if($kode == 0){
+					}else{
+						$absensi = mysql_query("SELECT * FROM absensi where kd_kelas=$kode");
 						$start=1;
 						while($a = mysql_fetch_array($absensi)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -35,7 +46,8 @@
 							</td></tr>";
 							$start++;
 						}
-					echo "</table>";
+					echo "</table></form>";
+					}
 					?>
 					<br>
 					<form action="users/admin/proses/tambah.presensi.php" method="post">

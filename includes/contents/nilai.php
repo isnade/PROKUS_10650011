@@ -5,8 +5,17 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND !($_SESSION['sebagai'] == 'siswa')){
 				if(!isset($_GET['proses'])){
-					echo "
+				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
+				$i=1;
+					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
+					<tr><td>Kelas</td><td><select name='x'>
+						<option value=1 selected>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$i++;
+							$kode = $_POST['x'];}
+							echo"</option></select></td><td><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
 					<tr style=\"background:#ccc;\">
 					<th style=\"border:1px solid #000;\">Id Siswa (NIS)</th>
 					<th style=\"border:1px solid #000;\">Tahun ajaran</th>
@@ -22,7 +31,9 @@
 					<th style=\"border:1px solid #000;\">Nilai Rapor</th>
 					<th tyle=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-						$nilai = mysql_query("SELECT * FROM nilai ");
+					if($kode == 0){
+					}else{
+						$nilai = mysql_query("SELECT * FROM nilai where kd_kelas=$kode");
 						$start=1;
 						while($a = mysql_fetch_array($nilai)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -43,7 +54,8 @@
 							</td></tr>";
 							$start++;
 						}
-					echo "</table>";
+					echo "</table></form>";
+					}
 					?>
 					<br>
 					<form action="users/admin/proses/tambah.nilai.php" method="post">
@@ -183,11 +195,20 @@
 					}
 				}
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'siswa')){
+				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
+				$i=1;
 			$nilai = mysql_query("SELECT s.nm_siswa,s.id_siswa,k.kelas,n.thn_ajaran,n.semester FROM siswa s,kelas k,nilai n WHERE k.id_siswa='$_SESSION[nama]' and password='$_SESSION[pass]'");
 			$n = mysql_fetch_array($nilai);
 			echo "<table><tr><td>Nama :</td><td >$n[nm_siswa]</td></tr>
 			<tr><td>NIS :</td><td>$n[id_siswa]</td></tr>
-			<tr><td>Kelas :</td><td>$n[kelas]</td></tr>
+			<form method='post'>
+					<tr><td>Kelas</td><td><select name='x'>
+						<option value=1 selected>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$i++;
+							$kode = $_POST['x'];}
+							echo"</option></select></td><td><input type=\"submit\" name=\"submit\" value=\"Pilih\"></td></tr>
 			</tr></table>";
 					echo "<table border=\"1\" style=\"color:#000;\">
 					<tr style=\"background:#ccc;\">
@@ -202,6 +223,8 @@
 						<th style=\"border:1px solid #000;\">Semester</th>
 						<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
 					</tr>";
+					if($kode == 0){
+					}else{
 						$nilai = mysql_query("SELECT n.*,m.nm_mapel FROM nilai n,mapel m WHERE id_siswa='$_SESSION[nama]' and n.kd_mapel=m.kd_mapel ");
 						$start=1;
 						while($a = mysql_fetch_array($nilai)){
@@ -218,7 +241,8 @@
 							<td style=\"text-align:center;border:1px solid #000;\">$a[thn_ajaran]</td></tr>";
 							$start++;
 						}
-					echo "</table>";
+					echo "</table></form>";
+					}
 			}?>
       <div class="section_w250 float_r"></div>
     </div>

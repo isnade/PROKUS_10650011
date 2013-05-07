@@ -5,19 +5,30 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'admin')){
 				if(!isset($_GET['proses'])){
-					echo "
+				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
+				$i=1;
+					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
+					<tr><td>Kelas</td><td><select name='x'>
+						<option value=1 selected>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$i++;
+							$kode = $_POST['x'];}
+							echo"</option></select></td><td><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
 					<tr style=\"background:#ccc;\">
 					<th style=\"border:1px solid #000;\">Kode Kelas</th>
 					<th style=\"border:1px solid #000;\">Kode Mapel</th>
 					<th style=\"border:1px solid #000;\">Hari</th>
 					<th style=\"border:1px solid #000;\">Jam</th>
-					<th style=\"border:1px solid #000;\">Id Guru (NIP)</th>
+					<th style=\"border:1px solid #000;\">Kode Guru</th>
 					<th style=\"border:1px solid #000;\">Ruang</th>
 					<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
 					<th tyle=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-						$jadwal = mysql_query("SELECT * FROM jadwal ");
+					if($kode == 0){
+					}else{
+						$jadwal = mysql_query("SELECT * FROM jadwal where kd_kelas=$kode");
 						$start=1;
 						while($a = mysql_fetch_array($jadwal)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -25,7 +36,7 @@
 							<td style=\"text-align:center;border:1px solid #000;\">$a[kd_mapel]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[hari]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[jam]</td>
-							<td style=\"text-align:center;border:1px solid #000;\">$a[id_guru]</td>
+							<td style=\"text-align:center;border:1px solid #000;\">$a[kd_guru]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[ruang]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">$a[thn_ajaran]</td>
 							<td style=\"text-align:center;border:1px solid #000;\">
@@ -33,7 +44,8 @@
 							</td></tr>";
 							$start++;
 						}
-					echo "</table>";
+					echo "</table></form>";
+					}
 					?>
 					<br>
 					<form action="users/admin/proses/tambah.jadwal.php" method="post">
@@ -59,8 +71,8 @@
 								<td><input class="input" type="text" name="jam"/></td>
 							</tr>
 							<tr class='dark'>
-								<td>Id Guru (NIP)</td>
-								<td><input class="input" type="text" name="id_guru"/></td>
+								<td>Kode Guru</td>
+								<td><input class="input" type="text" name="kd_guru"/></td>
 							</tr>
 							<tr class='light'>
 								<td>Ruang</td>
@@ -102,8 +114,8 @@
 							<tr class='light'><td>Jam</td>
 							<td><input class="input" type="text" name="jam" value="<?php echo $a['jam']?>"/></td>
 							</tr>
-							<tr class='dark'><td>Id Guru (NIP)</td>
-							<td><input class="input" type="text" name="id_guru" value="<?php echo $a['id_guru']?>"/></td>
+							<tr class='dark'><td>Kode Guru</td>
+							<td><input class="input" type="text" name="kd_guru" value="<?php echo $a['kd_guru']?>"/></td>
 							</tr>
 							<tr class='light'><td>Ruang</td>
 							<td><input class="input" type="text" name="ruang" value="<?php echo $a['ruang']?>"/></td>
@@ -152,7 +164,7 @@
 			<th style=\"border:1px solid #000;\">Mapel</th>
 			<th style=\"border:1px solid #000;\">Hari</th>
 			<th style=\"border:1px solid #000;\">Jam</th>
-			<th style=\"border:1px solid #000;\">Guru</th>
+			<th style=\"border:1px solid #000;\">Kode Guru</th>
 			<th style=\"border:1px solid #000;\">Ruang</th>
 			<th style=\"border:1px solid #000;\">Tahun Ajaran</th></tr>";
 			$jadwal = mysql_query("SELECT j.* FROM jadwal j,kelas k WHERE k.id_siswa='$_SESSION[nama]' and j.kd_kelas=k.kd_kelas");
@@ -162,7 +174,7 @@
 			echo "<td style=\"text-align:center;border:1px solid #000;\">$a[kd_mapel]</td>
 			<td style=\"text-align:center;border:1px solid #000;\">$a[hari]</td>
 			<td style=\"text-align:center;border:1px solid #000;\">$a[jam]</td>
-			<td style=\"text-align:center;border:1px solid #000;\">$a[id_guru]</td>
+			<td style=\"text-align:center;border:1px solid #000;\">$a[kd_guru]</td>
 			<td style=\"text-align:center;border:1px solid #000;\">$a[ruang]</td>
 			<td style=\"text-align:center;border:1px solid #000;\">$a[thn_ajaran]</td></tr>";
 			$start++;

@@ -5,32 +5,43 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'admin')){
 				if(!isset($_GET['proses'])){
-					echo "
+				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
+				$i=1;
+					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
-					<tr>
-						<th colspan=\"100%\"><center><h3>Mapel</h3></center></th>
-					</tr>
+					<tr><th colspan=\"100%\"><center><h3>Mapel</h3></center></th></tr>
+						<tr><td>Kelas</td><td><select name='x'>
+						<option value='1' selected>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$i++;
+							$kode = $_POST['x'];
+							}
+							echo"</option></select><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
 					<tr style=\"background:#ccc;\">
 						<th style=\"border:1px solid #000;\">Kode Mapel</th>
 						<th style=\"border:1px solid #000;\">Mata Pelajaran</th>
 						<th style=\"border:1px solid #000;\">Kode Kelas</th>
-						<th style=\"border:1px solid #000;\">Id Guru</th>
+						<th style=\"border:1px solid #000;\">Kode Guru</th>
 						<th style=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-						$Mapel = mysql_query("SELECT * FROM mapel");
+					if($kode == 0){
+					}else{
+						$Mapel = mysql_query("SELECT * FROM mapel where kd_kelas=$kode");
 						$mulai=1;
 							while($m = mysql_fetch_array($Mapel)){
 								if($mulai%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
 								echo "<td style=\"text-align:center;border:1px solid #000;\">$m[kd_mapel]</td>
 								<td style=\"border:1px solid #000;\">$m[nm_mapel]</td>
 								<td style=\"text-align:center;border:1px solid #000;\">$m[kd_kelas]</td>
-								<td style=\"text-align:center;border:1px solid #000;\">$m[id_guru]</td>
+								<td style=\"text-align:center;border:1px solid #000;\">$m[kd_guru]</td>
 								<td style=\"text-align:center;border:1px solid #000;\">
 							<a href=\"mapel-$m[kd_mapel]-edit\"><img src=\"images/edit.png\"/></a> | <a href=\"mapel-$m[kd_mapel]-hapus\"><img src=\"images/hapus.png\"/></a>
 							</td></tr>";
 								$mulai++;
 							}
-					echo "</table>";
+					echo "</table></form>";
+					}
 			?>
 			<br>
 			<form action="users/admin/proses/tambah.mapel.php" method="post">
@@ -52,8 +63,8 @@
 								<td><input class="input" type="text" name="kd_kelas"/></td>
 							</tr>
 							<tr class='light'>
-								<td>Id Guru</td>
-								<td><input class="input" type="text" name="id_guru"/></td>
+								<td>Kode Guru</td>
+								<td><input class="input" type="text" name="kd_guru"/></td>
 							</tr>
 							<tr>
 								<td colspan="2"><input type="submit" name="submit" align="center" value="Tambah" /></td>
@@ -83,8 +94,8 @@
 							<tr class='dark'><td>Kode Kelas</td>
 								<td><input class="input" type="text" name="kd_kelas" value="<?php echo $a['kd_kelas']?>"/></td>
 							</tr>
-							<tr class='light'><td>Id Guru</td>
-								<td><input class="input" type="text" name="id_guru" value="<?php echo $a['id_guru']?>"/></td>
+							<tr class='light'><td>Kode Guru</td>
+								<td><input class="input" type="text" name="kd_guru" value="<?php echo $a['kd_guru']?>"/></td>
 							</tr>
 							<tr class='dark'><td><input type="submit" value="Edit" /></td>
 							</tr>

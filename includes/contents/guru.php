@@ -8,7 +8,8 @@
 					echo "<h3><center>Data Guru</center></h3>";
 					echo "<table border=\"1\" style=\"color:#000;\">
 					<tr style=\"background:#ccc;\">
-						<th style=\"solid #000;\">Id guru (NIS)</th>
+						<th style=\"solid #000;\">Id guru (NIP)</th>
+						<th style=\"solid #000;\">Kode guru</th>
 						<th style=\"solid #000;\">Nama guru</th>
 						<th style=\"solid #000;\">Alamat</th>
 						<th style=\"solid #000;\">Jenis Kelamin</th>
@@ -23,6 +24,7 @@
 						while($a = mysql_fetch_array($guru)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
 							echo "<td style=\"text-align:center;solid #000;\">$a[id_guru]</td>
+							<td style=\"text-align:center;solid #000;\">$a[kd_guru]</td>
 							<td style=\"text-align:center;solid #000;\">$a[nm_guru]</td>
 							<td style=\"text-align:center;solid #000;\">$a[alamat]</td>
 							<td style=\"text-align:center;solid #000;\">$a[jk]</td>
@@ -43,8 +45,10 @@
 					<style>.input{padding:4px;width:100%;}</style>
 						<table style="color:#000;">
 							<tr><th colspan='2'><center><h3>Masukan Data guru Baru</h3></center></th></tr>
-							<tr class='dark'><td>Id guru (NIS)</td>
+							<tr class='dark'><td>Id guru (NIP)</td>
 							<td><input class="input" type="text" name="id_guru" /></td></tr>
+							<tr class='light'><td>Kode Guru</td>
+							<td><input class="input" type="text" name="kd_guru"/></td></tr>
 							<tr class='light'><td>Nama guru</td>
 							<td><input class="input" type="text" name="nama"/></td></tr>
 							<tr class='dark'><td>Alamat guru</td>
@@ -108,8 +112,11 @@
 							<table style="color:#000;">
 							<tr class='light'>
 							<th colspan='2'><center><h3>Data guru</h3></center></th></tr>
-							<tr class='dark'><td>Id guru</td>
+							<tr class='dark'><td>Id Guru (NIP)</td>
 							<td><input type="hidden" name="id_guru" value="<?php echo $a['id_guru']?>"/><?php echo $a['id_guru'];?></td>
+							</tr>
+							<tr class='light'><td>Kode Guru</td>
+							<td><input class='input' type="text" name="kd_guru" value="<?php echo $a['kd_guru']?>"/></td>
 							</tr>
 							<tr class='light'><td>Nama guru</td>
 							<td><input class='input' type="text" name="nama" value="<?php echo $a['nm_guru']?>"/></td>
@@ -194,7 +201,8 @@
 				echo "
 					<table border=\"1\" style=\"color:#000;\">
 					<tr style=\"background:#ccc;\">
-						<th style=\"solid #000;\">Id guru (NIS)</th>
+						<th style=\"solid #000;\">Id guru (NIP)</th>
+						<th style=\"solid #000;\">Kode Guru</th>
 						<th style=\"solid #000;\">Nama guru</th>
 						<th style=\"solid #000;\">Alamat</th>
 						<th style=\"solid #000;\">Jenis Kelamin</th>
@@ -208,6 +216,7 @@
 						while($a = mysql_fetch_array($guru)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
 							echo "<td style=\"text-align:center;solid #000;\">$a[id_guru]</td>
+							<td style=\"text-align:center;solid #000;\">$a[kd_guru]</td>
 							<td style=\"text-align:center;solid #000;\">$a[nm_guru]</td>
 							<td style=\"text-align:center;solid #000;\">$a[alamat]</td>
 							<td style=\"text-align:center;solid #000;\">$a[jk]</td>

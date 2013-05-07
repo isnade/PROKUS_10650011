@@ -5,11 +5,18 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'admin')){
 				if(!isset($_GET['proses'])){
-					echo "
+				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
+				
+					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
-					<tr>
-						<th colspan=\"100%\"><center><h2>Kelas</h2></center></th>
-					</tr>
+					<tr><th colspan=\"100%\"><center><h3>Kelas</h3></center></th></tr>
+						<tr><td>Kelas</td><td><select name='x'>
+						<option value='1' selected>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$kode = $_POST['x'];
+							}
+							echo"</option></select><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
 					<tr style=\"background:#ccc;\">
 						<th style=\"border:1px solid #000;\">Kode kelas</th>
 						<th style=\"border:1px solid #000;\">Id Siswa</th>
@@ -17,7 +24,9 @@
 						<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
 						<th style=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-						$kelas = mysql_query("SELECT * FROM kelas");
+					if($kode == 0){
+					}else{
+						$kelas = mysql_query("SELECT * FROM kelas where kd_kelas=$kode");
 						$mulai=1;
 							while($m = mysql_fetch_array($kelas)){
 								if($mulai%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -30,9 +39,10 @@
 							</td></tr>";
 								$mulai++;
 							}
-					echo "</table>";
-				
+					echo "</table></form>";
+					}
 			?>
+			<br>
 			<form action="users/admin/proses/tambah.kelas.php" method="post">
 					<style>.input{padding:4px;width:100%;}</style>
 						<table border="1" style="color:#000;">
