@@ -4,7 +4,7 @@
 	<a href="presensi">Input Presensi</a></br>
 	<a href="siswa">Data Siswa</a></br>
 	<a href="jadwal">Jadwal</a></br>
-	<a href="materi">Perangkat Pembelajaran</a></br>
+	<a href="materi">Repositori Pembelajaran</a></br>
 	<a href="logout">Logout</a></br>
 </div>
 <div class="sidebar_box_bottom"></div>

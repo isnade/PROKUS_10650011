@@ -5,19 +5,16 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'admin')){
 				if(!isset($_GET['proses'])){
-				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
-				$i=1;
+				$kelas = mysql_query("SELECT distinct kd_kelas FROM kelas");
 					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
 					<tr><th colspan=\"100%\"><center><h3>Mapel</h3></center></th></tr>
-						<tr><td>Kelas</td><td><select name='x'>
-						<option value='1' selected>";
+						<tr><td>Kelas</td><td><select name='x'>";
 						while ($z = mysql_fetch_array($kelas)){
 							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
-							$i++;
 							$kode = $_POST['x'];
 							}
-							echo"</option></select><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
+							echo"</option></select><input type=\"submit\" name=\"submit\" value=\"Lihat\"></td></tr>
 					<tr style=\"background:#ccc;\">
 						<th style=\"border:1px solid #000;\">Kode Mapel</th>
 						<th style=\"border:1px solid #000;\">Mata Pelajaran</th>
@@ -25,8 +22,7 @@
 						<th style=\"border:1px solid #000;\">Kode Guru</th>
 						<th style=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-					if($kode == 0){
-					}else{
+					if($kode != 0){
 						$Mapel = mysql_query("SELECT * FROM mapel where kd_kelas=$kode");
 						$mulai=1;
 							while($m = mysql_fetch_array($Mapel)){

@@ -5,17 +5,14 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND !($_SESSION['sebagai'] == 'siswa')){
 				if(!isset($_GET['proses'])){
-				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
-				$i=1;
+				$kelas = mysql_query("SELECT distinct kd_kelas FROM kelas");
 					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
-					<tr><td>Kelas</td><td><select name='x'>
-						<option value=1 selected>";
+					<tr><td>Kelas</td><td><select name='x'>";
 						while ($z = mysql_fetch_array($kelas)){
 							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
-							$i++;
 							$kode = $_POST['x'];}
-							echo"</option></select></td><td><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
+							echo"</option></select></td><td><input type=\"submit\" name=\"submit\" value=\"Lihat\"></td></tr>
 					<tr style=\"background:#ccc;\">
 					<th style=\"border:1px solid #000;\">Id Siswa (NIS)</th>
 					<th style=\"border:1px solid #000;\">Kode Kelas</th>
@@ -25,10 +22,9 @@
 					<th style=\"border:1px solid #000;\">Jumlah Izin</th>
 					<th style=\"border:1px solid #000;\">Jumlah Alfa</th>
 					<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
-					<th tyle=\"border:1px solid #000;\">Proses</th>
+					<th style=\"border:1px solid #000;\">Proses</th>
 					</tr>";
-					if($kode == 0){
-					}else{
+					if($kode != 0){
 						$absensi = mysql_query("SELECT * FROM absensi where kd_kelas=$kode");
 						$start=1;
 						while($a = mysql_fetch_array($absensi)){
@@ -198,11 +194,18 @@
 					}
 				}
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'siswa')){
+			$kelas = mysql_query("SELECT distinct kd_kelas FROM kelas WHERE id_siswa='$_SESSION[nama]'");
 			$absensi = mysql_query("SELECT s.nm_siswa,s.id_siswa,k.kelas,a.thn_ajaran FROM siswa s,kelas k,absensi a WHERE k.id_siswa='$_SESSION[nama]' and password='$_SESSION[pass]'");
 			$n = mysql_fetch_array($absensi);
-			echo "<table><tr><td>Nama :</td><td >$n[nm_siswa]</td></tr>
-			<tr><td>NIS :</td><td>$n[id_siswa]</td></tr>
-			<tr><td>Kelas :</td><td>$n[kelas]</td></tr>
+			echo "<table><tr><td>Nama <td>:</td></td><td >$n[nm_siswa]</td></tr>
+			<tr><td>NIS <td>:</td></td><td>$n[id_siswa]</td></tr>
+			<form method='post'>
+			<tr><td>Kelas <td>:</td></td><td><select name='x'>";
+						while ($z = mysql_fetch_array($kelas)){
+							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
+							$kode = $_POST['x'];}
+							echo"</option></select></td>
+			<td><input type=\"submit\" name=\"submit\" value=\"Lihat\"></td></tr>
 			</tr></table>";
 					echo "<table border=\"1\" style=\"color:#000;\">
 					<tr style=\"background:#ccc;\">
@@ -213,7 +216,8 @@
 						<th style=\"border:1px solid #000;\">Jumlah Alfa</th>
 						<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
 					</tr>";
-						$absensi = mysql_query("SELECT * FROM absensi WHERE id_siswa='$_SESSION[nama]'");
+					if($kode != 0){
+						$absensi = mysql_query("SELECT * FROM absensi WHERE id_siswa='$_SESSION[nama]' and kd_kelas=$kode");
 						$start=1;
 						while($a = mysql_fetch_array($absensi)){
 							if($start%2==0){echo "<tr class=\"dark\">";}else{echo "<tr class=\"light\">";}
@@ -225,9 +229,10 @@
 							<td style=\"text-align:center;border:1px solid #000;\">$a[thn_ajaran]</td></tr>";
 							$start++;
 						}
-					echo "</table>";
+						}
+					echo "</table></form>";
+					
 			}?>
-      <div class="section_w250 float_r"></div>
     </div>
     <div class="content_box_bottom"></div>
   </div>

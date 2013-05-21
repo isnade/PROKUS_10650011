@@ -5,27 +5,25 @@
 				echo "Maaf, anda tidak punya izin untuk melihat menu ini.";
 			}else if((isset($_SESSION['sebagai'],$_SESSION['nama'],$_SESSION['pass'])) AND ($_SESSION['sebagai'] == 'admin')){
 				if(!isset($_GET['proses'])){
-				$kelas = mysql_query("SELECT kd_kelas FROM kelas");
-				
+				$kelas = mysql_query("SELECT distinct kd_kelas FROM kelas");
 					echo "<form method='post'>
 					<table border=\"1\" style=\"color:#000;\">
 					<tr><th colspan=\"100%\"><center><h3>Kelas</h3></center></th></tr>
-						<tr><td>Kelas</td><td><select name='x'>
-						<option value='1' selected>";
+						<tr><td>Kelas</td><td><select name='x'>";
 						while ($z = mysql_fetch_array($kelas)){
 							echo"<option value=$z[kd_kelas]>$z[kd_kelas]</option>";
-							$kode = $_POST['x'];
-							}
-							echo"</option></select><input type=\"submit\" name=\"submit\" value=\"Submit\"></td></tr>
-					<tr style=\"background:#ccc;\">
-						<th style=\"border:1px solid #000;\">Kode kelas</th>
-						<th style=\"border:1px solid #000;\">Id Siswa</th>
-						<th style=\"border:1px solid #000;\">Kelas</th>
-						<th style=\"border:1px solid #000;\">Tahun Ajaran</th>
-						<th style=\"border:1px solid #000;\">Proses</th>
-					</tr>";
-					if($kode == 0){
-					}else{
+							$kode = $_POST['x'];}
+							echo"</option></select><input type=\"submit\" name=\"submit\" value=\"Lihat\"></td></tr>";
+							?>
+					<tr style="background:#ccc;">
+						<th style="border:1px solid #000;">Kode kelas</th>
+						<th style="border:1px solid #000;">Id Siswa</th>
+						<th style="border:1px solid #000;">Kelas</th>
+						<th style="border:1px solid #000;">Tahun Ajaran</th>
+						<th style="border:1px solid #000;">Proses</th>
+					</tr>
+					<?php
+					if($kode != 0){
 						$kelas = mysql_query("SELECT * FROM kelas where kd_kelas=$kode");
 						$mulai=1;
 							while($m = mysql_fetch_array($kelas)){
@@ -37,10 +35,10 @@
 								<td style=\"text-align:center;border:1px solid #000;\">
 							<a href=\"kelas-$m[kd_kelas]-edit\"><img src=\"images/edit.png\"/></a> | <a href=\"kelas-$m[kd_kelas]-hapus\"><img src=\"images/hapus.png\"/></a>
 							</td></tr>";
-								$mulai++;
+							$mulai++;
+							}
 							}
 					echo "</table></form>";
-					}
 			?>
 			<br>
 			<form action="users/admin/proses/tambah.kelas.php" method="post">
@@ -76,10 +74,10 @@
 						echo "<script>document.location='kelas';</script>";
 					}else{
 						$kd= addslashes($_GET['kd_kelas']);
-						$kelas = mysql_query("SELECT * FROM kelas WHERE kd_kelas='$kd'");
-						$jkelas = mysql_num_rows($kelas);
+						$kel = mysql_query("SELECT * FROM kelas WHERE kd_kelas='$kd'");
+						$jkelas = mysql_num_rows($kel);
 						if($jkelas == 1){
-							$a = mysql_fetch_array($kelas);?>
+							$a = mysql_fetch_array($kel);?>
 							<form action="users/admin/proses/edit.kelas.php" method="post">
 							<style>.input{padding:4px;width:100%;}</style>
 							<table border="1" style="color:#000;">
@@ -98,8 +96,7 @@
 							</tr>
 							<tr class='dark'><td><input type="submit" value="Edit" /></td>
 							</tr>
-							</table>
-							</form>
+							</table></form>
 							<?php
 						}else{
 							echo "<script>alert('Data tidak ditemukan');document.location='kelas';</script>";
